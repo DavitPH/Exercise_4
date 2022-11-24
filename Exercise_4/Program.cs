@@ -76,6 +76,7 @@ namespace Exercise_4
     {
         static void Main(string[] args)
         {
+            CirculasList obj = new CirculasList;
         }
     }
 }
