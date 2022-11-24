@@ -56,6 +56,21 @@ namespace Exercise_4
             }
         }
 
+        public bool delNode(int nim)
+        {
+            Node previous, current;
+            previous = current = null;
+            //check apakah node yang dimaksud ada di dalam list atau tidak
+            if (Search(nim, ref previous, ref current) == false)
+                return false;
+            previous.next = current.next;
+            if (current == LAST)
+
+                LAST  = LAST.next;
+            return true;
+
+        }
+
     }
     class Program
     {
