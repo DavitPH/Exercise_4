@@ -8,9 +8,20 @@ namespace Exercise_4
 {
     class Node
     {
+        //membuat Node untuk circular
         public int rollNumber;
         public string name;
         public Node next;
+
+        public Node()
+        {
+        }
+
+        public Node(int  i)
+        {
+            rollNumber = i;
+            next = null;
+        }
     }
     class CirculasList
     {
@@ -64,19 +75,19 @@ namespace Exercise_4
             previous.next = nodeBaru;
         }
 
-
+        //Mencari node yang ditentukan
         public bool Search(int rollNo, ref Node previous, ref Node current)
-        {
+        { 
             for (previous = current = LAST.next; current != LAST;
                 previous = current , current = current.next)
             {
                 if (rollNo == current.rollNumber)
-                    return (true);
+                    return (true); //mengembalikan nilai true jika node ditemukan
             }
             if (rollNo == LAST.rollNumber)
-                return true;
+                return true; //Jika node hadir di akhir
             else
-                return (false);
+                return (false); //jika node tidak ditemukan
         }
 
         public bool listEmpty()
@@ -87,7 +98,7 @@ namespace Exercise_4
                 return false;
         }
 
-        public void treverse()
+        public void treverse() //Melintasi semua node dari daftar
         {
             if (listEmpty())
                 Console.WriteLine("\nList kosong");
@@ -115,12 +126,48 @@ namespace Exercise_4
             return true;
 
         }
+        public void DeleteNode(int x)
+        {
+            // list is empty
+            if (LAST == null)
+                return;
+            // delete the only node
+            if (LAST.next == LAST && LAST.rollNumber == x)
+            {
+                LAST = null;
+                return;
+            }
+            // delete the first node
+            if (LAST.next.rollNumber  == x)
+            {
+                LAST.next = LAST.next.next;
+                return;
+            }
+            // delete a node in between the list
+            Node p = LAST.next;
+            while (p.next != LAST.next)
+            {
+                if (p.next.rollNumber == x)
+                    break;
+                p = p.next;
+            }
+
+            if (p.next == LAST.next)
+                Console.WriteLine(x + " not found in the list.");
+            else
+            {
+                p.next = p.next.next;
+                if (LAST.rollNumber  == x)
+                    LAST = p;
+            }
+        }
 
     }
     class Program
     {
         static void Main(string[] args)
         {
+            int data;
             CirculasList obj = new CirculasList();
             while (true)
             {
@@ -132,7 +179,8 @@ namespace Exercise_4
                     Console.WriteLine("2. Search for a record in the list");
                     Console.WriteLine("3. Display the first record in the list");
                     Console.WriteLine("4. Add data to the list FOR TESTING");
-                    Console.WriteLine("5. Exit");
+                    Console.WriteLine("5. Delnode TEST circulasList");
+                    Console.WriteLine("6. Exit");
                     Console.WriteLine("\nMasukan Pilihan Anda (1-4): ");
                     char ch = Convert.ToChar(Console.ReadLine());
                     switch (ch)
@@ -173,6 +221,12 @@ namespace Exercise_4
                             obj.addNote();
                             break;
                         case '5':
+                            Console.WriteLine("Enter the element to be deleted : ");
+                            data = Convert.ToInt32(Console.ReadLine());
+                            obj.DeleteNode(data);
+                            break;
+                            break;
+                        case '6':
                             return;
                         default:
                             {
