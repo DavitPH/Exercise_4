@@ -20,6 +20,51 @@ namespace Exercise_4
             LAST = null;
         }
 
+        public void addNote()
+        {
+            int nim;
+            string nm;
+            Console.WriteLine("\nMasukan nomer Mahasiswa: \n");
+            nim = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\nMasukan nama Mahasiswa: \n");
+            nm = Console.ReadLine();
+
+            Node nodeBaru = new Node();
+            nodeBaru.rollNumber  = nim;
+            nodeBaru.name = nm;
+
+            //Node ditambahkan sebagai node pertama
+            if (LAST  == null || nim <= LAST.rollNumber )
+            {
+                if ((LAST  != null) && (nim == LAST .rollNumber ))
+                {
+                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan \n");
+                }
+                nodeBaru.next = LAST ;
+                LAST  = nodeBaru;
+                return;
+            }
+            //Menemukan lokasi node baru didalam list
+            Node previous, current;
+            previous = LAST ;
+            current = LAST ;
+
+            while ((current != null) && (nim >= current.rollNumber))
+            {
+                if (nim == current.rollNumber)
+                {
+                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan\n");
+                    return;
+                }
+                previous = current;
+                current = current.next;
+            }
+            //Node baru akan ditempatkan di antara previous dan current
+            nodeBaru.next = current;
+            previous.next = nodeBaru;
+        }
+
+
         public bool Search(int rollNo, ref Node previous, ref Node current)
         {
             for (previous = current = LAST.next; current != LAST;
