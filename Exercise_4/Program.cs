@@ -41,6 +41,21 @@ namespace Exercise_4
             else
                 return false;
         }
+
+        public void treverse()
+        {
+            if (listEmpty())
+                Console.WriteLine("\nList kosong");
+            else
+            {
+                Console.WriteLine("\nData di dalam list adalah: \n");
+                Node currentNode;
+                for (currentNode = LAST ; currentNode != null; currentNode = currentNode.next)
+                    Console.Write(currentNode.rollNumber + " " + currentNode.name + "\n");
+                Console.WriteLine();
+            }
+        }
+
     }
     class Program
     {
