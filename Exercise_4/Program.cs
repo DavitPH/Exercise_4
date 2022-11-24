@@ -77,6 +77,65 @@ namespace Exercise_4
         static void Main(string[] args)
         {
             CirculasList obj = new CirculasList();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("\nMenu");
+                    Console.WriteLine("1. View all the records in the list");
+                    Console.WriteLine("2. Search for a record in the list");
+                    Console.WriteLine("3. Display the first record in the list");
+                    Console.WriteLine("4. Exit");
+                    Console.WriteLine("\nMasukan Pilihan Anda (1-4): ");
+                    char ch = Convert.ToChar(Console.ReadLine());
+                    switch (ch)
+                    {
+                        case '1':
+                            {
+                                obj.treverse();
+                            }
+                            break;
+                        case '2':
+                            {
+                                if (obj.listEmpty() == true)
+                                {
+                                    Console.WriteLine("\nList Kosong");
+                                    break;
+                                }
+                                Node previous, current;
+                                previous = current = null;
+                                Console.Write("\nMasukan nomer mahasiswa yang dicari: ");
+                                int num = Convert.ToInt32(Console.ReadLine());
+                                if (obj.Search(num, ref previous, ref current) == false)
+                                    Console.WriteLine("\nData tidak ditemukan");
+                                else
+                                {
+                                    Console.WriteLine("\nData Ketemu");
+                                    Console.WriteLine("\nNomer Mahasiswa: " + current.rollNumber);
+                                    Console.WriteLine("\nNama: " + current.name);
+
+                                }
+                            }
+                            break;
+                        case '3':
+                            {
+                                obj.firstNode();
+                            }
+                            break;
+                        case '4':
+                            return;
+                        default:
+                            {
+                                Console.WriteLine("Pilihan tidak valid");
+                                break;
+                            }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("\nCheck nilai yang anda masuklan!");
+                }
+            }
         }
     }
 }
