@@ -28,6 +28,10 @@ namespace Exercise_4
                 if (rollNo == current.rollNumber)
                     return (true);
             }
+            if (rollNo == LAST.rollNumber)
+                return true;
+            else
+                return (false);
         }
     }
     class Program
