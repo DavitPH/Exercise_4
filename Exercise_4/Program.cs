@@ -33,6 +33,14 @@ namespace Exercise_4
             else
                 return (false);
         }
+
+        public bool listEmpty()
+        {
+            if (LAST == null)
+                return true;
+            else
+                return false;
+        }
     }
     class Program
     {
