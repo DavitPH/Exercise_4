@@ -127,10 +127,12 @@ namespace Exercise_4
                 try
                 {
                     Console.WriteLine("\nMenu");
+
                     Console.WriteLine("1. View all the records in the list");
                     Console.WriteLine("2. Search for a record in the list");
                     Console.WriteLine("3. Display the first record in the list");
-                    Console.WriteLine("4. Exit");
+                    Console.WriteLine("4. Add data to the list FOR TESTING");
+                    Console.WriteLine("5. Exit");
                     Console.WriteLine("\nMasukan Pilihan Anda (1-4): ");
                     char ch = Convert.ToChar(Console.ReadLine());
                     switch (ch)
@@ -164,10 +166,13 @@ namespace Exercise_4
                             break;
                         case '3':
                             {
-                                obj.firstNode();
+                                
                             }
                             break;
                         case '4':
+                            obj.addNote();
+                            break;
+                        case '5':
                             return;
                         default:
                             {
