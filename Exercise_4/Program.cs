@@ -12,7 +12,14 @@ namespace Exercise_4
         public string name;
         public Node next;
     }
-
+    class CirculasList
+    {
+        Node LAST;
+        public CirculasList()
+        {
+            LAST = null;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
